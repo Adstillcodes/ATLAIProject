@@ -1,5 +1,5 @@
 #V1 of code for ATL project
-
+# AI project for school
 import face_recognition
 import cv2
 import numpy as np
