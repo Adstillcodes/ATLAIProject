@@ -6,3 +6,5 @@ qr2 = input("name of the image...please add a .jpg at the end of the name thnx!!
 qr = pyqrcode.create(qr1)
 qr.png(qr2, scale=8)
 
+#pip install PyQRCode
+#pip install pyzbar
