@@ -1,10 +1,17 @@
-#V2.0 of ATLAI Proj
-import face_recognition
+#final version, please test. If any bugs CALLLLLLLLL  MEEEEEEEEE
+
+import face_recognition 
 import os, sys
 import cv2
 import numpy as np
 import math
+import pyttsx3
 
+speaker = pyttsx3.init('sapi5')
+voices = speaker.getProperty('voices')
+speaker.setProperty('voice',voices[1].id)
+
+voiceRate = 150
 
 # Helper
 def face_confidence(face_distance, face_match_threshold=0.6):
@@ -43,10 +50,11 @@ class FaceRecognition:
 
         if not video_capture.isOpened():
             sys.exit('Video source not found...')
-
+        personName = ""
+        
         while True:
             ret, frame = video_capture.read()
-
+            speaker.runAndWait()
             # Only process every other frame of video to save time
             if self.process_current_frame:
                 # Resize frame of video to 1/4 size for faster face recognition processing
@@ -75,7 +83,23 @@ class FaceRecognition:
                         confidence = face_confidence(face_distances[best_match_index])
 
                     self.face_names.append(f'{name} ({confidence})')
+                    #mName: str = name.split(".")[0]
 
+                    mName: str = name.split(".")[0]
+                    if personName != mName:
+                        speaker.say(f'''good morning {mName} Welcome to DPS Pune for a 2 day annual robotics event wherein teams of 13 different school learn to build robots and subsequently comepte to solve a challange that employs concept of science, technology, engineering, math and computer science. 
+                        Our schedule for todays event is:
+                        730AM Registration at the registration counter and attendance.
+                        Inaugration Ceremony at 8:00AM in the multipurpose hall. The robocon event will be conducted in the senior wing computer labs are located in the basement of the E 1 building. 
+                        There will be a break from 10 30 AM to 11 AM for both robocon and AI bootcamp students in the basment and the senior wing quadrangle respectively. The training sessions
+                        from both the mentors will continue in the allocated labs form 11 30 AM to 1 30 PM.
+                        The models submitted by the participating student of robocon will be judged by our esteemed judges
+                        from 1 30 PM to 2 30 PM.The event will end at 2 30PM''')
+                        speaker.runAndWait()
+                        personName = mName    
+                    
+                
+                
             self.process_current_frame = not self.process_current_frame
 
             # Display the results
@@ -106,3 +130,6 @@ class FaceRecognition:
 if __name__ == '__main__':
     fr = FaceRecognition()
     fr.run_recognition()
+    
+    
+    #n-1785-12
