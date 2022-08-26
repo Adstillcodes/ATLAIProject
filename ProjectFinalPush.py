@@ -97,7 +97,7 @@ class FaceRecognition:
                     if personName != mName:
                         wishMe()
                         wishMe()
-                        speaker.say(f'''{mName} Welcome to DPS Poonae for a 2 day annual robotics event wherein teams of 13 different school learn to build robots and subsequently comepte to solve a challange that employs concept of science, technology, engineering, math and computer science. 
+                        speaker.say(f'''{mName} Welcome to DPS Poonae for a 2 day annual robotics event wherein teams of 13 different school learn to build robots and subsequently comepte to solve a challenge that employs concept of science, technology, engineering, math and computer science. 
                         Our schedule for todays event is:
                         730AM Registration at the registration counter and attendance.
                         Inaugration Ceremony at 8:00AM in the multipurpose hall. The robocon event will be conducted in the senior wing computer labs are located in the basement of the E 1 building. 
