@@ -1,17 +1,25 @@
-#final version, please test. If any bugs CALLLLLLLLL  MEEEEEEEEE
-
 import face_recognition 
 import os, sys
 import cv2
 import numpy as np
 import math
 import pyttsx3
-
+import datetime
 speaker = pyttsx3.init('sapi5')
 voices = speaker.getProperty('voices')
-speaker.setProperty('voice',voices[1].id)
+speaker.setProperty('voice',voices[0].id)
+speaker.setProperty("rate", 130)
 
-voiceRate = 150
+def wishMe():
+    '''
+    it will wish you as per time. to know what time is then  you have to use
+    '''
+    hour = int(datetime.datetime.now().hour)
+
+    if hour>=0 and hour<12:
+        speaker.say("Good Morning .")
+    elif hour>=12 and hour<18:
+        speaker.say("Good Afternoon .")
 
 # Helper
 def face_confidence(face_distance, face_match_threshold=0.6):
@@ -87,7 +95,9 @@ class FaceRecognition:
 
                     mName: str = name.split(".")[0]
                     if personName != mName:
-                        speaker.say(f'''good morning {mName} Welcome to DPS Pune for a 2 day annual robotics event wherein teams of 13 different school learn to build robots and subsequently comepte to solve a challange that employs concept of science, technology, engineering, math and computer science. 
+                        wishMe()
+                        wishMe()
+                        speaker.say(f'''{mName} Welcome to DPS Poonae for a 2 day annual robotics event wherein teams of 13 different school learn to build robots and subsequently comepte to solve a challange that employs concept of science, technology, engineering, math and computer science. 
                         Our schedule for todays event is:
                         730AM Registration at the registration counter and attendance.
                         Inaugration Ceremony at 8:00AM in the multipurpose hall. The robocon event will be conducted in the senior wing computer labs are located in the basement of the E 1 building. 
@@ -112,7 +122,7 @@ class FaceRecognition:
 
                 # Create the frame with the name
                 cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
-                cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
+                cv2.rectangle(frame, (left, bottom - 35), (right, bottom),       (0, 0, 255), cv2.FILLED)
                 cv2.putText(frame, name, (left + 6, bottom - 6), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 255, 255), 1)
 
             # Display the resulting image
@@ -130,6 +140,3 @@ class FaceRecognition:
 if __name__ == '__main__':
     fr = FaceRecognition()
     fr.run_recognition()
-    
-    
-    #n-1785-12
